@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Hello";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- lower case m for model, this brings in a reference to the object type-->
+@model Person
+
+<h1>Hello</h1>
+
+<!-- upper case M for Model, this accesses the data in the object -->
+<h1>@Model.Name</h1>
+
+<h1>@Model.Age</h1>
+
+<!-- we use Razor syntax to access the global ViewBag objects-->
+@*<h1>@ViewBag.Name</h1>
+
+<h1>@ViewBag.Age</h1>*@
+

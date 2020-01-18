@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model TestEfCoreContext
+
+@foreach (Person per in Model.Person)
+{
+    <h3>@per.Name</h3>
+    <h3>@per.Age</h3>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+<form asp-controller="Home" asp-action="Hello">
+    <!-- the div element doesn't add anything itself, 
+        instead gives us a blank canvas to shape with CSS -->
+    <div class="form-group">
+        <!-- we use the name attribute to map this text input to our parameter in
+        the back end controller-->
+        <input class="form-control" type="text" name="Name" pattern="[A-Za-z]+" required />
+        <!-- the class attribute is accessing code from the bootstrap library -->
+    </div>
+
+    <div class="form-group">
+        <!-- give each input a unique name to insure proper mapping in the back end -->
+        <input class="form-control" type="text" name="Age" required />
+    </div>
+
+    <div class="form-group">
+        <!-- we use input type submit to submit our form to the assigned controller/action-->
+        <input class="form-control btn btn-primary" type="submit" />
+    </div>
+</form>
+
+<!-- make a form to take text input, which we will use to search our DB -->
+<form asp-controller="Home" asp-action="Search" >
+    <input type="text" name="result" />
+
+    <input type="submit" />
+</form>
