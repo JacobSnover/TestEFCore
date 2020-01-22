@@ -27,6 +27,30 @@ namespace TestEFCORE.Controllers
             return View(db);
         }
 
+        // this action is used to determine which view to load
+        public IActionResult WelcomeViews()
+        {
+            // use a conditional statement to determine which view to load
+            if (true)
+                //this will return the WelcomeYou view
+                return WelcomeYou();// you don't have to pass arguements
+            // return WelcomeYou(string name); you can also pass arguements
+            else
+                // this will return the WelcomeMe view
+                return WelcomeMe();
+        }
+
+        // these views, WelcomeYou, and WelcomeMe are called by above method determined by the conditional statetment
+        public IActionResult WelcomeYou()
+        {
+            return View("WelcomeYou", "Bobby");
+        }
+
+        public IActionResult WelcomeMe()
+        {
+            return View("WelcomeMe", "Me");
+        }
+
 
         // build a new action that will take my users input
         // make two inputs of type string, and use same names from HTML inputs
