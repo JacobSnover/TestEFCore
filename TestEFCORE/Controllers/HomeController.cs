@@ -28,22 +28,29 @@ namespace TestEFCORE.Controllers
         }
 
         // this action is used to determine which view to load
+        // this action return an IActionResult because the methods called return an IActionResult
         public IActionResult WelcomeViews()
         {
             // use a conditional statement to determine which view to load
-            if (true)
+            if (true) // this loads WelcomeYou view
+            //if (false) use false to load else statement and Welcome Me view
+            {
                 //this will return the WelcomeYou view
                 return WelcomeYou();// you don't have to pass arguements
-            // return WelcomeYou(string name); you can also pass arguements
+                                    // return WelcomeYou(string name); you can also pass arguements
+            }
             else
+            {
                 // this will return the WelcomeMe view
                 return WelcomeMe();
+            }
         }
 
         // these views, WelcomeYou, and WelcomeMe are called by above method determined by the conditional statetment
         public IActionResult WelcomeYou()
         {
-            return View("WelcomeYou", "Bobby");
+            // we specify what view to return to the determining method above
+            return View("WelcomeYou", "You");
         }
 
         public IActionResult WelcomeMe()
