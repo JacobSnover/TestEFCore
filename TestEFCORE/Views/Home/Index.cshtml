@@ -3,12 +3,34 @@
 }
 
 @model TestEfCoreContext
-
-@foreach (Person per in Model.Person)
-{
-    <h3>@per.Name</h3>
-    <h3>@per.Age</h3>
-}
+<!-- table element allows us to quickly line up our data -->
+<table>
+    <!--the tr gave us a table row to keep spearate from other table rows-->
+    <tr>
+        <!--the th or table header allows us to name our columns of data-->
+        <th>Name</th>
+        <th>Age</th>
+        <th>Buy Item</th>
+    </tr>
+    @foreach (Person per in Model.Person)
+    {
+        <!-- we have the tr table row in the loop to make
+            a new row for each row of data-->
+<tr>
+    <td><h1>@per.Name</h1></td>
+    <td><h1>@per.Age</h1></td>
+    <!--use Razor syntax to access C# if statement-->
+    <!--this if statement stermines if the following HTML is displayed-->
+    <!-- Razor syntax also allows us to access TempData objects-->
+    <!-- we cast to bool (bool)TempData["bool"], 
+        whatever type you put in the parenthesis is the casted type-->
+    @if ((bool)TempData["bool"])
+    {
+        <td><button>Buy</button></td>
+    }
+</tr>
+    }
+</table>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -17,7 +39,7 @@
 
 
 <form asp-controller="Home" asp-action="Hello">
-    <!-- the div element doesn't add anything itself, 
+    <!-- the div element doesn't add anything itself,
         instead gives us a blank canvas to shape with CSS -->
     <div class="form-group">
         <!-- we use the name attribute to map this text input to our parameter in
@@ -38,7 +60,7 @@
 </form>
 
 <!-- make a form to take text input, which we will use to search our DB -->
-<form asp-controller="Home" asp-action="Search" >
+<form asp-controller="Home" asp-action="Search">
     <input type="text" name="result" />
 
     <input type="submit" />

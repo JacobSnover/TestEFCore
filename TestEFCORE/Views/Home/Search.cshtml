@@ -8,6 +8,15 @@
 
 <h1>Search</h1>
 
-<h1>@Model.Name</h1>
+@if ((bool)TempData["Registered"])
+{
 
-<h1>@Model.Age</h1>
+    <h1>@Model.Name</h1>
+    <h1>@Model.Age</h1>
+
+    <h1>Registered</h1>
+}
+else { 
+
+    <h1>Not Registered</h1>
+}

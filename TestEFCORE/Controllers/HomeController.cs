@@ -23,6 +23,12 @@ namespace TestEFCORE.Controllers
             // Use my context class to pull in my DataBase data
             TestEfCoreContext db = new TestEfCoreContext();
 
+            //we use TempData to hold temporary global values
+            //TempData is dictionary of Key Value pairs
+            //flip this value
+            TempData["bool"] = false;
+            
+
             //pass the model to view to display the data
             return View(db);
         }
@@ -86,6 +92,10 @@ namespace TestEFCORE.Controllers
             // make an indiviodual Person object to store my result in
             Person foundResult = new Person();
 
+            // make a TempData object and set it to false
+            // this allows me to later set it to true if I find a match
+            TempData["Registered"] = false;
+
             // i need to find my result in my DB
             foreach(Person person in db.Person)
             {
@@ -94,6 +104,9 @@ namespace TestEFCORE.Controllers
                 {
                     // if you find a match, assign that value to your temp Person object
                     foundResult = person;
+                    // You found a match, set your TempData to true
+                    // this allows us to display certain HTML
+                    TempData["Registered"] = true;
                 }
             }
             // pass the object with the data to the view to be displayed
