@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model TestEfCoreContext
+@model TestEFCoreContext
 <!-- table element allows us to quickly line up our data -->
 <table>
     <!--the tr gave us a table row to keep spearate from other table rows-->
@@ -16,19 +16,19 @@
     {
         <!-- we have the tr table row in the loop to make
             a new row for each row of data-->
-<tr>
-    <td><h1>@per.Name</h1></td>
-    <td><h1>@per.Age</h1></td>
-    <!--use Razor syntax to access C# if statement-->
-    <!--this if statement stermines if the following HTML is displayed-->
-    <!-- Razor syntax also allows us to access TempData objects-->
-    <!-- we cast to bool (bool)TempData["bool"], 
-        whatever type you put in the parenthesis is the casted type-->
-    @if ((bool)TempData["bool"])
-    {
-        <td><button>Buy</button></td>
-    }
-</tr>
+        <tr>
+            <td><h1>@per.Name</h1></td>
+            <td><h1>@per.Age</h1></td>
+            <!--use Razor syntax to access C# if statement-->
+            <!--this if statement stermines if the following HTML is displayed-->
+            <!-- Razor syntax also allows us to access TempData objects-->
+            <!-- we cast to bool (bool)TempData["bool"],
+                whatever type you put in the parenthesis is the casted type-->
+            @if ((bool)TempData["bool"])
+            {
+                <td><button>Buy</button></td>
+            }
+        </tr>
     }
 </table>
 
@@ -38,19 +38,27 @@
 </div>
 
 
-<form asp-controller="Home" asp-action="Hello">
+<!--onsubmit calls JS function on form submit-->
+<form asp-controller="Home" asp-action="Hello" onsubmit="return Validate()">
     <!-- the div element doesn't add anything itself,
         instead gives us a blank canvas to shape with CSS -->
     <div class="form-group">
         <!-- we use the name attribute to map this text input to our parameter in
         the back end controller-->
-        <input class="form-control" type="text" name="Name" pattern="[A-Za-z]+" required />
+        <input class="form-control" type="text" id="Name" name="Name" required />
+        <!-- the class attribute is accessing code from the bootstrap library -->
+    </div>
+
+    <div class="form-group">
+        <!-- we use the name attribute to map this text input to our parameter in
+        the back end controller-->
+        <input class="form-control" type="text" id="ConfirmName" name="ConfirmName" required />
         <!-- the class attribute is accessing code from the bootstrap library -->
     </div>
 
     <div class="form-group">
         <!-- give each input a unique name to insure proper mapping in the back end -->
-        <input class="form-control" type="text" name="Age" required />
+        <input class="form-control" type="text" name="Age" />
     </div>
 
     <div class="form-group">
@@ -67,3 +75,41 @@
 </form>
 
 <a asp-controller="Home" asp-action="WelcomeViews">welcome</a>
+
+
+
+
+<script>
+    //function called on form submit, controls whether form gets submitted
+    function Validate() {
+        //console.log to know I'm entering this function
+        console.log("Validate function");
+
+        console.log("grab name input");
+        //grab the first input id="Name"
+        //use querySelector() to grab the value from my input
+        var name = document.querySelector("#Name").value;
+        //var name = document.getElementById("Name");
+
+        console.log(name);
+
+
+        //grab second input id="ConfirmName"
+        console.log("grab ConfirmName");
+        var confirmName = document.querySelector("#ConfirmName").value
+
+        console.log(confirm);
+
+        //if names match return true, allowing form submission
+        if (name === confirmName) {
+            console.log("return true");
+            //return true to submit the form
+            return true;
+        } else {
+            //if no match is found returne false stopping submission
+            console.log("return false");
+            //return false to stop form submission
+            return false;
+        }
+    }
+</script>

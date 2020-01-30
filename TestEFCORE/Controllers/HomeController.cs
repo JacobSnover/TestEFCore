@@ -21,7 +21,7 @@ namespace TestEFCORE.Controllers
         public IActionResult Index()
         {
             // Use my context class to pull in my DataBase data
-            TestEfCoreContext db = new TestEfCoreContext();
+            TestEFCoreContext db = new TestEFCoreContext();
 
             //we use TempData to hold temporary global values
             //TempData is dictionary of Key Value pairs
@@ -87,7 +87,7 @@ namespace TestEFCORE.Controllers
         public IActionResult Search(string result)
         {
             // Use my context class to pull in my DataBase data
-            TestEfCoreContext db = new TestEfCoreContext();
+            TestEFCoreContext db = new TestEFCoreContext();
 
             // make an indiviodual Person object to store my result in
             Person foundResult = new Person();
